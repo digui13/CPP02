@@ -1,5 +1,9 @@
 #include "Fixed.hpp"
 
+// ##################################################################################################
+// # 										CONSTRUCTOR & DESTRUCTOR								#
+// ##################################################################################################
+
 Fixed::Fixed()
 {
 	this->_fixed_point_nb = 0;
@@ -20,6 +24,21 @@ Fixed::~Fixed()
 			<< endl;
 }
 
+// ##################################################################################################
+// # 										OPERATORS												#
+// ##################################################################################################
+
+Fixed& Fixed::operator=(Fixed& obj) {
+	cout 	<< "Copy assignment operator called" 
+			<< endl;
+	this->_fixed_point_nb = obj.getRawBits();
+	return *this;
+}
+
+// ##################################################################################################
+// # 										GETTERS & SETTERS										#
+// ##################################################################################################
+
 int Fixed::getRawBits(void) const
 {
 	cout	<< "getRawBits member function called"
@@ -32,11 +51,4 @@ void Fixed::setRawBits (int const rawBits)
 	cout	<< "setRawBits member function called"
 			<< endl;
 	this->_fixed_point_nb = rawBits;
-}
-
-Fixed& Fixed::operator=(Fixed& obj) {
-	cout 	<< "Copy assignment operator called" 
-			<< endl;
-	this->_fixed_point_nb = obj.getRawBits();
-	return *this;
 }

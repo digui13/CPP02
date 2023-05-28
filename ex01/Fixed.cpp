@@ -6,14 +6,13 @@
 
 Fixed::Fixed()
 {
-	_fixed_point_nb = 0;
 	cout	<< "Default constructor called" 
 			<< endl;
+	_fixed_point_nb = 0;
 }
 
 Fixed::Fixed(const int p)
 {
-	_fixed_point_nb = p;
 	cout	<< "Int constructor called" 
 			<< endl;
 	_fixed_point_nb = p << _bits;
@@ -21,7 +20,6 @@ Fixed::Fixed(const int p)
 
 Fixed::Fixed(const float p)
 {
-	_fixed_point_nb = p;
 	cout	<< "Float constructor called" 
 			<< endl;
 	_fixed_point_nb = (int)(roundf(p * (1 << _bits)));
@@ -32,8 +30,6 @@ Fixed::~Fixed()
 	cout	<< "Destructor called" 
 			<< endl;
 }
-
-
 
 // ##################################################################################################
 // # 										COPY													#
@@ -46,7 +42,23 @@ Fixed::Fixed(const Fixed& obj)
 	*this = obj;
 }
 
+// ##################################################################################################
+// # 										OPERATORS												#
+// ##################################################################################################
 
+
+Fixed& Fixed::operator=(const Fixed& obj) 
+{
+	cout 	<< "Copy assignment operator called" 
+			<< endl;
+	_fixed_point_nb = obj._fixed_point_nb;
+	return *this;
+}
+
+ostream& operator<<(ostream& output, const Fixed& obj) 
+{
+	return (output << obj.toFloat());
+}
 
 // ##################################################################################################
 // # 										GETTERS & SETTERS										#
@@ -66,8 +78,6 @@ void Fixed::setRawBits (int const rawBits)
 	_fixed_point_nb = rawBits;
 }
 
-
-
 // ##################################################################################################
 // # 										CONVERTERS												#
 // ##################################################################################################
@@ -80,24 +90,4 @@ int Fixed::toInt( void ) const
 float Fixed::toFloat( void ) const
 {
 	return (float)_fixed_point_nb / (float)(1 << _bits);
-}
-
-
-
-// ##################################################################################################
-// # 										OPERATORS												#
-// ##################################################################################################
-
-
-Fixed& Fixed::operator=(const Fixed& obj) 
-{
-	cout 	<< "Copy assignment operator called" 
-			<< endl;
-	_fixed_point_nb = obj._fixed_point_nb;
-	return *this;
-}
-
-ostream& operator<<(ostream& output, const Fixed& obj) 
-{
-	return (output << obj.toFloat());
 }
