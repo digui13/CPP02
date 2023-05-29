@@ -13,7 +13,6 @@ Fixed::Fixed()
 
 Fixed::Fixed(const int p)
 {
-	_fixed_point_nb = p;
 	//cout	<< "Int constructor called" 
 	//		<< endl;
 	_fixed_point_nb = p << _bits;
@@ -21,7 +20,6 @@ Fixed::Fixed(const int p)
 
 Fixed::Fixed(const float p)
 {
-	_fixed_point_nb = p;
 	//cout	<< "Float constructor called" 
 	//		<< endl;
 	_fixed_point_nb = (int)(roundf(p * (1 << _bits)));
@@ -102,6 +100,10 @@ ostream& operator<<(ostream& output, const Fixed& obj)
 	return (output << obj.toFloat());
 }
 
+// ##################################################################################################
+// # 										COMPARISON												#
+// ##################################################################################################
+
 bool Fixed::operator>(const Fixed& obj) {
 	return _fixed_point_nb > obj._fixed_point_nb;
 }
@@ -126,6 +128,10 @@ bool Fixed::operator!=(const Fixed& obj) {
 	return _fixed_point_nb != obj._fixed_point_nb;
 }
 
+// ##################################################################################################
+// # 										ARITHMETIC												#
+// ##################################################################################################
+
 Fixed Fixed::operator+(const Fixed& obj) {
 	Fixed output = Fixed();
 
@@ -149,6 +155,10 @@ Fixed Fixed::operator/(const Fixed& obj) {
 	Fixed output = Fixed(this->toFloat() / obj.toFloat());
 	return output;
 }
+
+// ##################################################################################################
+// # 								INCREMENT / DECREMENT											#
+// ##################################################################################################
 
 Fixed Fixed::operator++(void) {
 	Fixed output;

@@ -24,8 +24,8 @@ Fixed Point::GetPointY(void) const
 
 Point& Point::operator=(const Point& obj) 
 {
-	_x = obj._x;
-	_y = obj._y;
+	(Fixed&)_x = obj._x;
+	(Fixed&)_y = obj._y;
 
 	return *this;
 }

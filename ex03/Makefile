@@ -5,7 +5,7 @@
 #	MAKEFLAGS += --silent									# Silent the output makefile default msgs
 
 # Executable name
-EXEC_NAME					=	fixed
+EXEC_NAME					=	bsp
 
 # Compiler program
 COMP						=	clang++
@@ -73,7 +73,9 @@ ALL_DIRS					=	$(OBJ_DIR) \
 
 # Source files
 SRC_FILES					=	main.cpp \
-								Fixed.cpp
+								Fixed.cpp \
+								bsp.cpp	\
+								Point.cpp
 
 # Header files
 HDR_FILES					=	Fixed.hpp
